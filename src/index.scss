@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    background-color: #000;
 }
 .container{
     position: absolute;
@@ -18,9 +19,21 @@ body{
             display: block;
             width:85px;
             height: 85px;
+            font-weight: 300;
+            line-height: 85px;
+            border: 0;
+            font-size: 32px;
+            transition: opacity .2s ease-out;
+            &:hover{
+                opacity: .9;
+            }
+            &:active,&.active{
+                opacity: .8;
+            }
         }
         .calculator-display{
             flex: 1;
+            overflow-x: scroll;
             height: 85px;
             color: white;
             font-weight: 100;
@@ -29,6 +42,9 @@ body{
             padding-right: 10px;
             padding-top: 40px;
             text-align: right;
+            &.blink{
+                animation: blinker .1s linear 1;
+            }
         }
         .calculator-keyboard{
             display: flex;
@@ -38,6 +54,13 @@ body{
                 color: #424346;
                 outline: 1px solid #949599;
             }
+            button.calculator-keyboard_operator_key{
+                background-color: #f98410;
+                color: #fff6f9;
+                font-size: 36px;
+                outline: 1px solid #ca5200;
+                font-weight: 100;
+            }
             button.calculator-keyboard_number_key:nth-child(-n+3){
                 background-color: #afb0b5;
                 font-size: 26px;
@@ -46,6 +69,36 @@ body{
             button.calculator-keyboard_number_key[value="0"]{
                 order: 10;
                 flex: 2;
+            }
+            button.calculator-keyboard_number_key[value="."]{
+                order: 11;
+            }
+            button.calculator-keyboard_number_key[value="1"]{
+                order: 7;
+            }
+            button.calculator-keyboard_number_key[value="2"]{
+                order: 8;
+            }
+            button.calculator-keyboard_number_key[value="3"]{
+                order: 9;
+            }
+            button.calculator-keyboard_number_key[value="4"]{
+                order: 4;
+            }
+            button.calculator-keyboard_number_key[value="5"]{
+                order: 5;
+            }
+            button.calculator-keyboard_number_key[value="6"]{
+                order: 6;
+            }
+            button.calculator-keyboard_number_key[value="7"]{
+                order: 1;
+            }
+            button.calculator-keyboard_number_key[value="8"]{
+                order: 2;
+            }
+            button.calculator-keyboard_number_key[value="9"]{
+                order: 3;
             }
             .calculator-keyboard_container_numbers{
                 display: flex;
@@ -59,5 +112,11 @@ body{
             }
         }
         
+    }
+}
+
+@keyframes blinker{
+    50%{
+        opacity: 0;
     }
 }
