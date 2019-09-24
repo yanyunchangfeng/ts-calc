@@ -128,6 +128,7 @@ export interface Data{
                 break;
              case 'delete':
                 this.deleteNumber();
+                break;
              case 'result': 
                 this.showResult();
                 break;
@@ -167,7 +168,7 @@ export interface Data{
            this.calculate();
        }
        this.data.storedResult = this.data.currentValue;
-       this.data.currentValue = '';
+       this.data.currentValue = '0';
        this.data.currentOperation = newOperation;
     }
     calculate(){
@@ -179,6 +180,13 @@ export interface Data{
             resultValue = oldValue * newValue;
           }
           if ( operation === 'division') {
+            if(newValue === 0){
+              alert('除数不能为0');
+              this.data.storedResult = null;
+              this.data.currentValue = '' + resultValue;
+              this.updateView();
+              return;
+            }
             resultValue = oldValue / newValue;
           }
           if ( operation === 'subtract') {
@@ -208,5 +216,4 @@ export interface Data{
     }
  }
  let cal = new Calculator()
- console.dir(cal)
 

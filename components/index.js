@@ -115,6 +115,7 @@ var Calculator = /** @class */ (function () {
                 break;
             case 'delete':
                 this.deleteNumber();
+                break;
             case 'result':
                 this.showResult();
                 break;
@@ -155,7 +156,7 @@ var Calculator = /** @class */ (function () {
             this.calculate();
         }
         this.data.storedResult = this.data.currentValue;
-        this.data.currentValue = '';
+        this.data.currentValue = '0';
         this.data.currentOperation = newOperation;
     };
     Calculator.prototype.calculate = function () {
@@ -167,6 +168,13 @@ var Calculator = /** @class */ (function () {
             resultValue = oldValue * newValue;
         }
         if (operation === 'division') {
+            if (newValue === 0) {
+                alert('除数不能为0');
+                this.data.storedResult = null;
+                this.data.currentValue = '' + resultValue;
+                this.updateView();
+                return;
+            }
             resultValue = oldValue / newValue;
         }
         if (operation === 'subtract') {
@@ -197,5 +205,4 @@ var Calculator = /** @class */ (function () {
     return Calculator;
 }());
 var cal = new Calculator();
-console.dir(cal);
 //# sourceMappingURL=index.js.map
