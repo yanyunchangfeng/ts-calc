@@ -14,6 +14,7 @@ export interface mapKeys{
 }
  class Calculator{
     data:Data;
-    mapKeys:mapKeys
+    mapKeys:mapKeys;
+    
  }
 
